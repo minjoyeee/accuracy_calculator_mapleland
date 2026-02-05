@@ -16,9 +16,12 @@ def apply_maple_warrior(base: Stats, mw_percent: float) -> Stats:
 
 
 def calc_accuracy_from_stats(job: JobGroup, total_stats: Stats) -> int:
-    # TODO: 직업군별 명중 공식 연결
-    # 지금은 Step(1) 합산 파이프라인 테스트용으로 0 반환
-    return 0
+    if job == JobGroup.MAGE:
+        # 마법 명중: (INT/10) + (LUK/10), 각각 버림 후 더함
+        return (total_stats.int // 10) + (total_stats.luk // 10)
+
+    # 물리 직업(전사/궁수/도적): floor(DEX*0.8 + LUK*0.5)
+    return floor(total_stats.dex * 0.8 + total_stats.luk * 0.5)
 
 
 def derive_character_result(
