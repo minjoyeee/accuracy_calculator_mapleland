@@ -1,14 +1,15 @@
 from defaults import DEFAULT_BASE_STATS
 from engine import derive_character_result
-from models import BuffState, CharacterInput, EquipmentState, JobGroup
+from models import BuffState, CharacterInput, EquipmentState, JobGroup, Stats
+
 
 
 def main() -> None:
     ch = CharacterInput(
         level=30,
         job=JobGroup.ARCHER,
-        base_stats=DEFAULT_BASE_STATS,      # 기본 4/4/4/4
-        maple_warrior_percent=0.15,         # 예: 메용 15%
+        base_stats=Stats(str=4, dex=50, int=4, luk=10),  # 순덱 50, 순럭 10
+        maple_warrior_percent=0.15,
     )
 
     equipment = EquipmentState(use_overall=False)
