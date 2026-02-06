@@ -1,0 +1,9 @@
+[
+  {"id":"test_mob","name":"테스트 몬스터","level":35,"evasion":20,"image_url":null},
+  { "id": "slime_mock", "name": "슬라임(테스트용)", "level": 10, "evasion": 15, "image_url": null },
+  { "id": "pig_mock", "name": "돼지(테스트용)", "level": 15, "evasion": 18, "image_url": null },
+  { "id": "horny_mush_mock", "name": "뿔버섯(테스트용)", "level": 22, "evasion": 22, "image_url": null },
+  { "id": "zombie_mush_mock", "name": "좀비버섯(테스트용)", "level": 30, "evasion": 28, "image_url": null },
+  { "id": "wild_boar_mock", "name": "와일드보어(테스트용)", "level": 35, "evasion": 30, "image_url": null }
+
+]

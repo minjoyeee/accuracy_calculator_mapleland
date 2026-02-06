@@ -1,0 +1,19 @@
+[
+  {
+    "id": "bless",
+    "name": "블레스",
+    "acc_group": "accuracy",
+    "effect": { "stats": { "str": 0, "dex": 0, "int": 0, "luk": 0 }, "acc": 20 }
+  },
+  {
+    "id": "focus",
+    "name": "집중(테스트용)",
+    "effect": { "stats": { "str": 0, "dex": 0, "int": 0, "luk": 0 }, "acc": 8 }
+  },
+  {
+    "id": "sharp_eyes_mock",
+    "name": "샤프아이즈(테스트용)",
+    "effect": { "stats": { "str": 0, "dex": 0, "int": 0, "luk": 0 }, "acc": 0 }
+  }
+
+]

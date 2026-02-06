@@ -1,0 +1,18 @@
+[
+  {
+    "id": "acc_pill",
+    "name": "명중 알약",
+    "acc_group": "accuracy",
+    "effect": { "stats": { "str": 0, "dex": 0, "int": 0, "luk": 0 }, "acc": 10 }
+  },
+  {
+    "id": "archer_pill_mock",
+    "name": "명중 물약(테스트용)",
+    "effect": { "stats": { "str": 0, "dex": 0, "int": 0, "luk": 0 }, "acc": 15 }
+  },
+  {
+    "id": "dex_pill_mock",
+    "name": "DEX 물약(테스트용)",
+    "effect": { "stats": { "str": 0, "dex": 5, "int": 0, "luk": 0 }, "acc": 0 }
+  }
+]

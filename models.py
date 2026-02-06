@@ -57,6 +57,12 @@ class Effect:
     def __add__(self, other: "Effect") -> "Effect":
         return Effect(stats=self.stats + other.stats, acc=self.acc + other.acc)
 
+@dataclass(frozen=True)
+class EffectSpec:
+    name: str
+    effect: Effect
+    acc_group: Optional[str] = None  # 예: "accuracy"
+
 
 @dataclass(frozen=True)
 class Item:
@@ -96,16 +102,35 @@ class EquipmentState:
 @dataclass
 class BuffState:
     # UI에서는 분리(버프스킬/도핑)지만, 효과 합산은 동일하게 처리
-    skill_buffs: Dict[str, Effect] = field(default_factory=dict)
-    doping: Dict[str, Effect] = field(default_factory=dict)
+    skill_buffs: Dict[str, EffectSpec] = field(default_factory=dict)
+    doping: Dict[str, EffectSpec] = field(default_factory=dict)
 
     def total_effect(self) -> Effect:
-        total = Effect()
-        for e in self.skill_buffs.values():
-            total = total + e
-        for e in self.doping.values():
-            total = total + e
-        return total
+        # 스탯은 전부 합산
+        total_stats = Stats()
+        # ACC는 그룹별로 처리: None은 합산, group은 max
+        acc_sum_stackable = 0
+        acc_max_by_group: Dict[str, int] = {}
+
+        def apply(spec: EffectSpec) -> None:
+            nonlocal total_stats, acc_sum_stackable, acc_max_by_group
+            e = spec.effect
+            total_stats = total_stats + e.stats
+
+            if spec.acc_group is None:
+                acc_sum_stackable += e.acc
+            else:
+                prev = acc_max_by_group.get(spec.acc_group, 0)
+                if e.acc > prev:
+                    acc_max_by_group[spec.acc_group] = e.acc
+
+        for spec in self.skill_buffs.values():
+            apply(spec)
+        for spec in self.doping.values():
+            apply(spec)
+
+        acc_total = acc_sum_stackable + sum(acc_max_by_group.values())
+        return Effect(stats=total_stats, acc=acc_total)
 
 
 @dataclass(frozen=True)
@@ -124,3 +149,18 @@ class DerivedResult:
     acc_from_stats: int
     acc_bonus: int
     acc_total: int
+
+@dataclass(frozen=True)
+class Monster:
+    name: str
+    level: int
+    evasion: int  # EVA
+    image_url: Optional[str] = None
+
+
+@dataclass(frozen=True)
+class HitCheckResult:
+    acc_total: int
+    acc_required: int
+    margin: int          # acc_total - acc_required
+    is_sufficient: bool  # True면 미스 없음(가정)

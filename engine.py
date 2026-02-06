@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from math import floor
 
-from models import BuffState, CharacterInput, DerivedResult, EquipmentState, JobGroup, Stats
-
+from .models import BuffState, CharacterInput, DerivedResult, EquipmentState, JobGroup, Stats
+from .models import Monster, HitCheckResult
 
 def apply_maple_warrior(base: Stats, mw_percent: float) -> Stats:
     # 메용: 순스탯에만 % 적용, 소수점 버림
@@ -48,4 +48,28 @@ def derive_character_result(
         acc_from_stats=acc_from_stats,
         acc_bonus=acc_bonus,
         acc_total=acc_total,
+    )
+
+def required_accuracy(player_level: int, mob_level: int, mob_evasion: int) -> int:
+    """
+    미스 0% 기준 필요 명중(커뮤니티에서 널리 쓰는 구메이플/메이플랜드 계열 공식)
+    - 레벨차 패널티 포함
+    - 소수점 버림
+    """
+    if player_level >= mob_level:
+        # EVA * (55/15) = EVA * 3.666...
+        return floor(mob_evasion * 55 / 15)
+
+    level_diff = mob_level - player_level  # 양수
+    return floor((55 + level_diff * 2) * mob_evasion / 15)
+
+
+def check_hit(acc_total: int, player_level: int, mob: Monster) -> HitCheckResult:
+    acc_req = required_accuracy(player_level, mob.level, mob.evasion)
+    margin = acc_total - acc_req
+    return HitCheckResult(
+        acc_total=acc_total,
+        acc_required=acc_req,
+        margin=margin,
+        is_sufficient=(margin >= 0),
     )

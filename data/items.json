@@ -1,0 +1,73 @@
+[
+  {
+    "id": "empty_gloves",
+    "name": "(빈 장갑)",
+    "slot": "gloves",
+    "effect": { "stats": { "str": 0, "dex": 0, "int": 0, "luk": 0 }, "acc": 0 },
+    "image_url": null
+  },
+  {
+    "id": "work_gloves",
+    "name": "작업용 장갑(예시)",
+    "slot": "gloves",
+    "effect": { "stats": { "str": 0, "dex": 0, "int": 0, "luk": 0 }, "acc": 10 },
+    "image_url": null
+  },
+  {
+    "id": "basic_earring",
+    "name": "기본 귀고리(예시)",
+    "slot": "earring",
+    "effect": { "stats": { "str": 0, "dex": 2, "int": 0, "luk": 0 }, "acc": 0 },
+    "image_url": null
+  },
+  {
+    "id": "basic_bow",
+    "name": "기본 활(예시)",
+    "slot": "weapon",
+    "effect": { "stats": { "str": 0, "dex": 3, "int": 0, "luk": 0 }, "acc": 0 },
+    "image_url": null
+  },
+  {
+    "id": "dex_gloves_mock",
+    "name": "덱장갑(테스트용)",
+    "slot": "gloves",
+    "effect": { "stats": { "str": 0, "dex": 3, "int": 0, "luk": 0 }, "acc": 0 },
+    "image_url": null
+  },
+  {
+    "id": "acc_gloves_mock",
+    "name": "명중장갑(테스트용)",
+    "slot": "gloves",
+    "effect": { "stats": { "str": 0, "dex": 0, "int": 0, "luk": 0 }, "acc": 5 },
+    "image_url": null
+  },
+  {
+    "id": "dex_cape_mock",
+    "name": "덱망토(테스트용)",
+    "slot": "cape",
+    "effect": { "stats": { "str": 0, "dex": 2, "int": 0, "luk": 0 }, "acc": 0 },
+    "image_url": null
+  },
+  {
+    "id": "acc_earring_mock",
+    "name": "명중귀고리(테스트용)",
+    "slot": "earring",
+    "effect": { "stats": { "str": 0, "dex": 0, "int": 0, "luk": 0 }, "acc": 3 },
+    "image_url": null
+  },
+  {
+    "id": "dex_shoes_mock",
+    "name": "덱신발(테스트용)",
+    "slot": "shoes",
+    "effect": { "stats": { "str": 0, "dex": 2, "int": 0, "luk": 0 }, "acc": 0 },
+    "image_url": null
+  },
+  {
+    "id": "pendant_mock",
+    "name": "펜던트(테스트용)",
+    "slot": "pendant",
+    "effect": { "stats": { "str": 0, "dex": 1, "int": 0, "luk": 1 }, "acc": 0 },
+    "image_url": null
+  }
+
+]
